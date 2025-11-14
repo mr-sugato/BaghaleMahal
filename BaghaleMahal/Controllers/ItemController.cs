@@ -23,7 +23,9 @@ namespace BaghaleMahal.Controllers
                 return new JsonResult(Ok(item));
             }else
             {
-                return new JsonResult(NotFound());
+                _context.Entry(itemInDb).CurrentValues.SetValues(item);
+                _context.SaveChanges();
+                return new JsonResult(itemInDb);
             }
         }
         [HttpGet]
@@ -35,6 +37,18 @@ namespace BaghaleMahal.Controllers
                 return new JsonResult(NotFound());
             }
             return new JsonResult(Ok(item));
+        }
+        [HttpDelete]
+        public JsonResult Delete(int id)
+        {
+            var item = _context.Items.Find(id);
+            if (item == null)
+            {
+                return new JsonResult(NotFound());
+            }
+            _context.Remove(item);
+            _context.SaveChanges();
+            return new JsonResult(Ok());
         }
     }
 }

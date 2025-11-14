@@ -1,6 +1,8 @@
 @BaghaleMahal_HostAddress = http://localhost:5298
 
-GET {{BaghaleMahal_HostAddress}}/weatherforecast/
+GET {{BaghaleMahal_HostAddress}}/api/item/2
 Accept: application/json
 
 ###
+// sa
+POST {{BaghaleMahal_HostAddress}}/api/item
